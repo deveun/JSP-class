@@ -1,0 +1,13 @@
+<%-- JSP Comment --%>
+<%
+	//Single line comment
+	/* Multiple line
+	comment*/
+%>
+
+<!-- index.jsp -->
+<!-- !make page Templates! -->
+<%@ include file="top.jsp"%>
+<tr><td colspan="2"><h3>Type content here</h3></td></tr>
+
+<%@ include file="bottom.jsp"%>

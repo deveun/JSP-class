@@ -1,0 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<%-- JSP Comment --%>
+<%
+	//Single line comment
+	/* Multiple line
+	comment*/
+%>
+
+<!-- index.jsp -->
+<%@ include file="top.jsp"%>
+<h3>Type content here</h3>
+</td>
+<%@ include file ="bottom.jsp" %>

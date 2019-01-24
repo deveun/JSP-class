@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<html>
+<head>
+</head>
+<body>
+	<div>
+		<hr color="green" width="300">
+		<h2>Student Register Page</h2>
+		<hr color="green" width="300">
+		<form name="g" action="insert.jsp" method="POST">
+			<table class="table table-sm">
+				<tr>
+					<td>
+						ID: <input type="test" name="id"><br>
+						Name: <input type="text" name="name"><br> 
+						Class: <input type="text" name="cname"><br>
+						<button type="submit">ADD</button>
+						<button type="reset">Reset</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

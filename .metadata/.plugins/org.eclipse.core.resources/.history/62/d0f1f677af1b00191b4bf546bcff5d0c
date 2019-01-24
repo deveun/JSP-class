@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<form name="f" action="result2.jsp" method="POST>
+
+		<label>Name</label>
+		<input class="
+		form-control" name="name" type="text">
+		<br> <label>Title</label>
+	</form>
+
+
+</body>
+</html>
