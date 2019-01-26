@@ -1,3 +1,4 @@
+<!--  DTO DAO »ç¿ë -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR" %>
 <!-- StudentDAO -->
@@ -30,7 +31,7 @@
 	if(res > 0) {
 		%><script>
 		alert("Success!! Move to student list page.");
-		location.href="list.jsp";
+		location.href="list2.jsp";
 		</script><%
 	}
 	

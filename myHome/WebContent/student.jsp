@@ -40,7 +40,7 @@
 		<h2>Student Delete Page</h2>
 		<hr color="green" width="300">
 		<div class="container">
-		<form name="f2" action="delete.jsp" method="POST">
+		<form name="f2" action="delete2.jsp" method="POST">
 			<table class="table table-sm">
 				<tr>
 					<td>
@@ -59,7 +59,7 @@
 		<h2>Student Search Page</h2>
 		<hr color="green" width="300">
 		<div class="container">
-		<form name="f2" action="search.jsp" method="POST">
+		<form name="f2" action="search3.jsp" method="POST">
 			<table class="table table-sm">
 				<tr>
 					<td>

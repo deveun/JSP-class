@@ -1,0 +1,15 @@
+create table jsp_member
+(no number(3) primary key,
+name varchar2(15) not null,
+id varchar2(15) not null,
+passwd varchar2(8) not null,
+ssn1 varchar2(6) not null,
+ssn2 varchar2(7) not null,
+email varchar2(30),
+hp1 varchar2(3),
+hp2 varchar2(4),
+hp3 varchar2(4),
+joindate varchar2(10));
+
+create sequence member_seq;
+

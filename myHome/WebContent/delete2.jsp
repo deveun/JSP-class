@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR" import="java.sql.*"%>
+	pageEncoding="EUC-KR"%>
+	<%@ page import="java.util.*, my.student.*"%>
+<!-- list.jsp -->
+<jsp:useBean id="stdao" class="my.student.StudentDAO" />
 
 <%
 	//Korean Encoding
@@ -16,16 +19,7 @@
 		return;
 	}
 
-	Class.forName("oracle.jdbc.driver.OracleDriver");
-	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String user = "jsp01";
-	String pass = "jsp01";
-	Connection conn = DriverManager.getConnection(url, user, pass);
-
-	String sql = "DELETE * FROM jspstudent WHERE id like ?";
-	PreparedStatement ps = conn.prepareStatement(sql);
-	ps.setString(1, id);
-	int res = ps.executeUpdate();
+		int res = stdao.deleteStudent(id);
 
 	if (res > 0) {
 %><script>
