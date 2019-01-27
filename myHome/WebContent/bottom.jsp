@@ -3,7 +3,7 @@
 </td>
 </tr>
 <tr>
-	<td>2019.01 Weekend JSP CLASS</td>
+	<td colspan="2">2019.01 Weekend JSP CLASS</td>
 </tr>
 </table>
 </div>
