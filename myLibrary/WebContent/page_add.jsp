@@ -2,7 +2,7 @@
 	pageEncoding="EUC-KR"%>
 <%@ include file="page_top.jsp"%>
 
-<form name="f" action="data_add.jsp" method="POST">
+<form name="f" action="data_update.jsp" method="POST">
 	<div class="container">
 		<table class="table table-sm">
 			<tr><td>
@@ -16,6 +16,7 @@
 			</td></tr>
 			<tr><td>
 				판매가:	<input class="form-control" type="number" name="price">
+				<input name= "mode" value="add" hidden> 
 			</td></tr>
 			<tr><td>
 				<button class="btn btn-default btn-sm d-block mx-auto" type="submit">추가하기</button>

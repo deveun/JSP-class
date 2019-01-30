@@ -1,12 +1,19 @@
 package book;
 
 public class BookDTO {
+	private int bookid;
 	private String bookname;
 	private String writer;
 	private String publisher;
 	private int price;
 	private String indate;
 	//GETTER & SETTER
+	public int getBookid() {
+		return bookid;
+	}
+	public void setBookid(int bookid) {
+		this.bookid = bookid;
+	}
 	public String getBookname() {
 		return bookname;
 	}
