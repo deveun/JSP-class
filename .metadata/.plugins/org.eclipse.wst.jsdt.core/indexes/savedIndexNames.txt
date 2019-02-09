@@ -1,9 +1,0 @@
-INDEX VERSION 1.4+D:\CHOI (JSP)\workspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-1927176418.index
-3373383285.index
-3271193799.index
-2651531115.index
-287102895.index
-1765209966.index
-2883426637.index
-2556443832.index

@@ -1,6 +1,0 @@
-package my.student;
-
-//DAO : Data Access Object
-public class StudentDAO {
-
-}

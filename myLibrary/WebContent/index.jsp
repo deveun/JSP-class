@@ -1,1 +1,0 @@
-<%@ include file="page_add.jsp"%>
