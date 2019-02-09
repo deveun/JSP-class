@@ -1,0 +1,18 @@
+JSP에서 자바코드 사용하기
+- <%! ~ %> : 선언문
+	== 메소드를 정의, 멤버필드값 정의
+- <% ~~ %> : scriptlet
+	== _jspService() 메소드 안에 사용되는 java code
+- <%= ~ %> : 표현식
+	== java의 결과값을 html상에 동일하게 나타내게 하는 code
+
+
+
+JSP 지시어 : <%@ ~~ %>
+- <%@ page ~ : page지시어
+  - 현재page의 속성값을 지정
+
+- <%@ include ~ : include지시어
+  - 템플릿 페이지 만들때 사용
+
+- <%@ taglib : taglib지시어
