@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import my.board.BoardDBBean;
 
 public class BoardDataBean {
@@ -16,20 +21,32 @@ public class BoardDataBean {
 	PreparedStatement ps;
 	ResultSet rs;
 
-	String url, user, pass;
+	// String url, user, pass;
 
-	// 반드시 public default
-	public BoardDataBean() {
+	//// 반드시 public default
+	// public BoardDataBean() {
+	// try {
+	// Class.forName("oracle.jdbc.driver.OracleDriver");
+	// } catch (ClassNotFoundException e) {
+	// System.err.println("Fail finding Oracle driver");
+	// // System.exit(0);
+	// }
+
+	// url = "jdbc:oracle:thin:@localhost:1521:xe";
+	// user = "jsp01";
+	// pass = "jsp01";
+
+	// **다수의 접속을 가능하도록 변경
+	static DataSource ds; // javax.sql.*
+	static {
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch (ClassNotFoundException e) {
-			System.err.println("Fail finding Oracle driver");
-			// System.exit(0);
+			Context init = new InitialContext(); // javax.naming.*
+			ds = (DataSource) init.lookup("java:comp/env/jdbc/oracle");
+		} catch (NamingException e) {
+			System.out.println("lookup실패 : " + e.getMessage());
 		}
+		// *********************
 
-		url = "jdbc:oracle:thin:@localhost:1521:xe";
-		user = "jsp01";
-		pass = "jsp01";
 	}
 
 	////////////////////////////////
@@ -37,7 +54,9 @@ public class BoardDataBean {
 	public List<BoardDBBean> listBoard() throws SQLException {
 		try {
 			// DB Connection
-			con = DriverManager.getConnection(url, user, pass);
+			// con = DriverManager.getConnection(url, user, pass);
+			// 방법2 (다수 접속)
+			con = ds.getConnection();
 			// SQL Query
 			String sql = "select * from jsp_board";
 			ps = con.prepareStatement(sql);
@@ -81,10 +100,13 @@ public class BoardDataBean {
 	// SELECT로 선택글 가져오기 (plusReadcount 실행)
 	public BoardDBBean getBoard(int num, String mode) throws SQLException {
 		try {
-			if(mode.equals("context"))
-			plusReadcount(num);
+			if (mode.equals("context"))
+				plusReadcount(num);
 			// DB Connection
-			con = DriverManager.getConnection(url, user, pass);
+			// con = DriverManager.getConnection(url, user, pass);
+			// 방법2 (다수 접속)
+			con = ds.getConnection();
+
 			// SQL Query
 			String sql = "select * from jsp_board where num = ?";
 			ps = con.prepareStatement(sql);
@@ -119,7 +141,10 @@ public class BoardDataBean {
 	protected void plusReadcount(int num) throws SQLException {
 		try {
 			// DB Connection
-			con = DriverManager.getConnection(url, user, pass);
+			// con = DriverManager.getConnection(url, user, pass);
+			// 방법2 (다수 접속)
+			con = ds.getConnection();
+
 			// SQL Query
 			String sql = "update jsp_board set readcount= readcount+1 where num = ?";
 			ps = con.prepareStatement(sql);
@@ -139,7 +164,10 @@ public class BoardDataBean {
 	public int addBoard(BoardDBBean board_dto) throws SQLException {
 		try {
 			// DB Connection
-			con = DriverManager.getConnection(url, user, pass);
+			// con = DriverManager.getConnection(url, user, pass);
+			// 방법2 (다수 접속)
+			con = ds.getConnection();
+
 			// SQL Query (시퀀스 값은 nextval로 구함, 날짜는 Date함수로 구함.)
 			String sql = "insert into jsp_board values" + "(board_seq.nextval, ?, ?, ?, ?, sysdate, 0, ?, ?)";
 			ps = con.prepareStatement(sql);
@@ -169,14 +197,17 @@ public class BoardDataBean {
 
 	//////////////////////////////
 	// (EDIT) data_update 파일의 작업 수행. 데이터 DB에 UPDATE 수정
-	//Password 가 일치할 때에만.
+	// Password 가 일치할 때에만.
 	public int editBoard(BoardDBBean board_dto) throws SQLException {
 		if (!isPassword(board_dto)) {
 			return -1;
 		}
 		try {
 			// DB Connection
-			con = DriverManager.getConnection(url, user, pass);
+			// con = DriverManager.getConnection(url, user, pass);
+			// 방법2 (다수 접속)
+			con = ds.getConnection();
+
 			// SQL Query (시퀀스 값은 nextval로 구함, 날짜는 Date함수로 구함.)
 			String sql = "update jsp_board set writer=?, email=?, subject=?, content=?, ip=? where num = ?";
 			ps = con.prepareStatement(sql);
@@ -213,7 +244,10 @@ public class BoardDataBean {
 		}
 		try {
 			// DB Connection
-			con = DriverManager.getConnection(url, user, pass);
+			// con = DriverManager.getConnection(url, user, pass);
+			// 방법2 (다수 접속)
+			con = ds.getConnection();
+
 			// SQL Query
 			String sql = "delete from jsp_board where num = ?";
 			ps = con.prepareStatement(sql);
@@ -234,7 +268,10 @@ public class BoardDataBean {
 	protected boolean isPassword(BoardDBBean board_dto) throws SQLException {
 		try {
 			// DB Connection
-			con = DriverManager.getConnection(url, user, pass);
+			// con = DriverManager.getConnection(url, user, pass);
+			// 방법2 (다수 접속)
+			con = ds.getConnection();
+
 			// SQL Query
 			String sql = "select passwd from jsp_board where num = ?";
 			ps = con.prepareStatement(sql);

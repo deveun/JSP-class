@@ -17,7 +17,8 @@
 		List<BoardDBBean> list = null;
 		list = board_dao.listBoard(); 
 		for(BoardDBBean dto : list) { %>
-		<tr onClick="location.href='context.jsp?num=<%=dto.getNum()%>'">
+		<!-- top.jsp에 isLogin session값이 들어있어서 바로 사용 가능. -->
+		<tr onClick = "if(!<%=isLogin%>) {alert('로그인 후 이용가능합니다.');return;} else {location.href='content.jsp?num=<%=dto.getNum()%>'}">
 			<td><%=dto.getNum()%></td>
 			<td><%=dto.getSubject()%></td>
 			<td><%=dto.getWriter()%></td>

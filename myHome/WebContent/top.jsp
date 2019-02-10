@@ -41,7 +41,8 @@
 						members</a> | 
 				<!-- MODE ±¸º° -->
 				<a href="<%=request.getContextPath()%>/member/member_all.jsp?mode=search">Search Member</a> |
-					Forum | Introduction
+				<a href="<%=request.getContextPath()%>/board/list.jsp">	Forum</a>
+				 | Introduction
 				</td>
 			</tr>
 			<tr height ="80%">
