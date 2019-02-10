@@ -1,0 +1,44 @@
+table명 : jsp_board
+
+create table jsp_board
+(num number primary key,
+writer varchar2(10) not null,
+email varchar2(30),
+subject varchar2(50) not null,
+passwd varchar2(12) not null,
+reg_date varchar2(10) not null,
+readcount number default 0,
+content varchar2(4000) not null,
+ip varchar2(20) not null);
+
+create sequence board_seq;
+
+기존 myHome project안에서 작업
+my.board 라는 package를 만들고,
+그안에 DTO와 DAO기본적인
+내용을 만들어 보자
+
+board라는 폴더를 하나 만들고
+그안에 list.jsp파일을 만들자.
+list.jsp파일은 글목록보기 페이지를
+구현한 페이지이다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
