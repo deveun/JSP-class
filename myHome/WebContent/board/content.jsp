@@ -64,6 +64,8 @@
 		<tr>
 			<td colspan="4">
 				<button class="btn btn-sm btn-default" type="button"
+					onClick="location.href='writeForm.jsp?num=<%=board_dto.getNum()%>&re_step=<%=board_dto.getRe_step()%>&re_level=<%=board_dto.getRe_level()%>'">답글쓰기</button>  
+				<button class="btn btn-sm btn-default" type="button"
 					onClick="location.href='updateForm.jsp?num=<%=board_dto.getNum()%>'">글수정</button>
 				<button class="btn btn-sm btn-default" type="button"
 					onClick="location.href='deleteForm.jsp?num=<%=board_dto.getNum()%>'">글삭제</button>

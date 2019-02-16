@@ -1,4 +1,4 @@
-package my.board;
+package my.board2;
 
 public class BoardDBBean {
 	private int num;
@@ -10,22 +10,9 @@ public class BoardDBBean {
 	private int readcount;
 	private String content;
 	private String ip;
-	private int re_step;
-	private int re_level;
+	private String filename;
+	private int filesize;
 	
-	
-	public int getRe_step() {
-		return re_step;
-	}
-	public void setRe_step(int re_step) {
-		this.re_step = re_step;
-	}
-	public int getRe_level() {
-		return re_level;
-	}
-	public void setRe_level(int re_level) {
-		this.re_level = re_level;
-	}
 	public int getNum() {
 		return num;
 	}
@@ -80,6 +67,16 @@ public class BoardDBBean {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	
-	
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	public int getFilesize() {
+		return filesize;
+	}
+	public void setFilesize(int filesize) {
+		this.filesize = filesize;
+	}
 }

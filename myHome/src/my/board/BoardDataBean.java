@@ -49,17 +49,43 @@ public class BoardDataBean {
 
 	}
 
+	//////////////////////////////////
+	// 전체 글 갯수 (Pagination)
+	public int getCount() throws SQLException {
+		try {
+			con = ds.getConnection();
+			String sql = "select count(*) from jsp_board";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			rs.next();
+			return rs.getInt(1);
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (ps != null)
+				ps.close();
+			if (con != null) 
+				con.close();
+		}
+	}
+
 	////////////////////////////////
 	// SELECT로 모든 데이터 리스트를 가져옴.
-	public List<BoardDBBean> listBoard() throws SQLException {
+	public List<BoardDBBean> listBoard(int start, int end) throws SQLException {
 		try {
 			// DB Connection
 			// con = DriverManager.getConnection(url, user, pass);
 			// 방법2 (다수 접속)
 			con = ds.getConnection();
 			// SQL Query
-			String sql = "select * from jsp_board";
+			//String sql = "select * from jsp_board";
+			String sql = "select * from (select rownum rn, A.* from "
+					+ "(select * from jsp_board order by re_step asc)A) "
+					+ "where rn between ? and ?";			
+			
 			ps = con.prepareStatement(sql);
+			ps.setInt(1, start);
+			ps.setInt(2, end);
 			// SELECT의 경우 executeQuery() 함수수행하여 결과를 rs에 저장.
 			rs = ps.executeQuery();
 
@@ -169,7 +195,24 @@ public class BoardDataBean {
 			con = ds.getConnection();
 
 			// SQL Query (시퀀스 값은 nextval로 구함, 날짜는 Date함수로 구함.)
-			String sql = "insert into jsp_board values" + "(board_seq.nextval, ?, ?, ?, ?, sysdate, 0, ?, ?)";
+			String sql = null;
+			if (board_dto.getNum()==0) {//새글일때
+				sql = "update jsp_board set re_step=re_step + 1";
+				//dto.setRe_step(0);
+				//dto.setRe_level(0);
+			}else {
+				sql = "update jsp_board set re_step=re_step + 1 "
+						+ "  where re_step>"+board_dto.getRe_step();
+				board_dto.setRe_step(board_dto.getRe_step() + 1);
+				board_dto.setRe_level(board_dto.getRe_level() + 1);
+				board_dto.setSubject("[답글]" + board_dto.getSubject());
+			}
+			ps = con.prepareStatement(sql);
+			ps.executeUpdate();
+			
+			sql = "insert into jsp_board values"
+					+ "(board_seq.nextval, ?,?,?,?,sysdate,0,?,?,?,?)";
+			
 			ps = con.prepareStatement(sql);
 			ps.setString(1, board_dto.getWriter());
 			ps.setString(2, board_dto.getEmail());
@@ -183,6 +226,8 @@ public class BoardDataBean {
 			// ps.setInt(6, 0);
 			ps.setString(5, board_dto.getContent());
 			ps.setString(6, board_dto.getIp());
+			ps.setInt(7, board_dto.getRe_step());
+			ps.setInt(8, board_dto.getRe_level());
 
 			// INSERT or DELETE or UPDATE는 executeUpdate() 사용
 			// 실행 결과에 따라서, 1 or 0을 반환

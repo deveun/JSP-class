@@ -14,8 +14,21 @@
 			<th>작성일</th><th>조회수</th><th>IP</th>
 		</tr>
 		<%
+		
+		//Pagination을 위한 작업
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum ==null) {
+			pageNum = "1";
+		}
+		int pageSize = 5;
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage-1) * pageSize +1;
+		int endRow = startRow + pageSize -1;
+		int dbRow = board_dao.getCount();
+		if(endRow > dbRow ) endRow = dbRow;
+		
 		List<BoardDBBean> list = null;
-		list = board_dao.listBoard(); 
+		list = board_dao.listBoard(startRow, endRow); 
 		for(BoardDBBean dto : list) { %>
 		<!-- top.jsp에 isLogin session값이 들어있어서 바로 사용 가능. -->
 		<tr onClick = "if(!<%=isLogin%>) {alert('로그인 후 이용가능합니다.');return;} else {location.href='content.jsp?num=<%=dto.getNum()%>'}">
@@ -28,7 +41,29 @@
 		</tr>
 		<% }%>
 	</table>
-		
+	
+	<!-- PAGINATION -->
+	<%
+		if (dbRow>0){
+			int pageBlock = 3;
+			int dbPage = (dbRow-1) / pageSize + 1;
+			int startPage = ((currentPage-1)/pageBlock*pageBlock)+1;
+			//currentpage : 123 -> 0
+			//currentPage : 456 -> 3
+			//currentPage : 789 -> 6
+			int endPage = startPage + pageBlock - 1;
+			if (endPage>dbPage) endPage = dbPage;
+			if (startPage>pageBlock){%>
+				[<a href="list.jsp?pageNum=<%=startPage-pageBlock%>">이전</a>]			
+<%		}
+			for(int i=startPage; i<=endPage; ++i){%>
+				[<a href="list.jsp?pageNum=<%=i%>"><%=i%></a>]
+<%		}
+			if (endPage < dbPage){%>
+				[<a href="list.jsp?pageNum=<%=startPage+pageBlock%>">다음</a>]			
+<%		}
+		}		
+%>		
 
 </div>
 
