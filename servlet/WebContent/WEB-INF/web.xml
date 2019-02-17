@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+<!-- Hello Page -->
+<servlet>
+	<servlet-name>hello</servlet-name>
+	<servlet-class>test.HelloServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>hello</servlet-name>
+	<url-pattern>/hello.do</url-pattern>
+</servlet-mapping>
+
+<!-- Member Page -->
+<servlet>
+	<servlet-name>member</servlet-name>
+	<servlet-class>test.MemberServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>member</servlet-name>
+	<url-pattern>/member.do</url-pattern>
+</servlet-mapping>
+
+<!-- Insert Memo Page -->
+<servlet>
+	<servlet-name>memo</servlet-name>
+	<servlet-class>memo.InsertMemo</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>memo</servlet-name>
+	<url-pattern>/memo.do</url-pattern>
+</servlet-mapping>
+
+<!-- List Page -->
+<servlet>
+	<servlet-name>list</servlet-name>
+	<servlet-class>memo.ListMemo</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>list</servlet-name>
+	<url-pattern>/list.do</url-pattern>
+</servlet-mapping>
+
+
+</web-app>

@@ -148,8 +148,18 @@
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
-
-      <Context docBase="myLibrary" path="/myLibrary" reloadable="true" source="org.eclipse.jst.jee.server:myLibrary"/><Context docBase="test" path="/test" reloadable="true" source="org.eclipse.jst.jee.server:test"/><Context docBase="myHome" path="/myHome" reloadable="true" source="org.eclipse.jst.jee.server:myHome"/></Host>
+        
+      <!-- 서버에서 디비를 연결하는 방법!!!!!!! -->
+      <Context docBase="myHome" path="/myHome" reloadable="true" source="org.eclipse.jst.jee.server:myHome"/>
+      
+      <Context docBase="servlet" path="/servlet" reloadable="true" source="org.eclipse.jst.jee.server:servlet">
+      	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxAction="20" maxIdle="10" maxWait="-1" name="jdbc/oracle" password="jsp01" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="jsp01"/>
+      </Context>
+      <Context docBase="MVCTest1" path="/MVCTest1" reloadable="true" source="org.eclipse.jst.jee.server:MVCTest1"/>
+      <Context docBase="MVCTest2" path="/MVCTest2" reloadable="true" source="org.eclipse.jst.jee.server:MVCTest2">
+      	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxAction="20" maxIdle="10" maxWait="-1" name="jdbc/oracle" password="jsp01" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="jsp01"/>
+      </Context>
+      </Host>
     </Engine>
   </Service>
 </Server>
