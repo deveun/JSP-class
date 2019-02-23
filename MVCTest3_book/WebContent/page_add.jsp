@@ -2,8 +2,8 @@
 	pageEncoding="EUC-KR"%>
 <%@ include file="page_top.jsp"%>
 
-<form name="f" action="data_update.jsp" method="POST">
-<input hidden name="command" value = "add">
+<form name="f" action="book.do" method="POST">
+	<input hidden name="command" value="add">
 	<div class="container">
 		<table class="table table-sm">
 			<tr><td>

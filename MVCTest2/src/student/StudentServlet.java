@@ -19,97 +19,112 @@ public class StudentServlet extends HttpServlet {
 		req.setCharacterEncoding("EUC-KR");
 		resp.setContentType("text/html; charset=EUC-KR");
 
-		PrintWriter pw = resp.getWriter();
+		//PrintWriter pw = resp.getWriter();
 		// pw.println("<h2>여기까지</h2>");
 		String cmd = req.getParameter("command");
-
+		////FACTORY
+		StudentFactory factory = StudentFactory.getInstance();
+		CommandIf cmdIf = factory.createCommand(cmd);
+		String nextPage = (String)cmdIf.processCommand(req, resp);
+/************************************
+ *********** 아래부분을 Factory로 만들어 관리
 		String msg = null, url = null, nextPage = null;
 		///////////////////////
 		if (cmd.equals("insert")) {
 			// pw.println("<h2>학생등록페이지에서 왔습니다.</h2>");
-			StudentDTO dto = new StudentDTO();
-			dto.setId(req.getParameter("id"));
-			dto.setName(req.getParameter("name"));
-			dto.setCname(req.getParameter("cname"));
-			StudentDAO dao = new StudentDAO();
-			int res = 0;
-			try {
-				res = dao.insertStudent(dto);
-				msg = "학생등록 성공.";
-				url = "student.do?command=list";
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-				msg = "학생등록 오류.";
-				url = "student.do?command=start";
-			}
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-			nextPage = "/message.jsp";
-
+//			StudentDTO dto = new StudentDTO();
+//			dto.setId(req.getParameter("id"));
+//			dto.setName(req.getParameter("name"));
+//			dto.setCname(req.getParameter("cname"));
+//			StudentDAO dao = new StudentDAO();
+//			int res = 0;
+//			try {
+//				res = dao.insertStudent(dto);
+//				msg = "학생등록 성공.";
+//				url = "student.do?command=list";
+//
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//				msg = "학생등록 오류.";
+//				url = "student.do?command=start";
+//			}
+//			req.setAttribute("msg", msg);
+//			req.setAttribute("url", url);
+//			nextPage = "/message.jsp";
+			CommandIf cmdIf = new InsertCommand();
+			nextPage = (String)cmdIf.processCommand(req,resp);
 		}
 		///////////////////////////
 		else if (cmd.equals("delete")) {
 			//pw.println("<h2>학생삭제페이지에서 왔습니다.</h2>");
-			StudentDAO dao = new StudentDAO();
-			String del_id = req.getParameter("id");
-			int res = 0;
-			try {
-				res = dao.deleteStudent(del_id);
-				msg = "학생삭제 성공.";
-				url = "student.do?command=list";
-			} catch (SQLException e) {
-				e.printStackTrace();
-				msg = "학생삭제 오류.";
-				url = "student.do?command=start";
-			}
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-			nextPage = "/message.jsp";
+//			StudentDAO dao = new StudentDAO();
+//			String del_id = req.getParameter("id");
+//			int res = 0;
+//			try {
+//				res = dao.deleteStudent(del_id);
+//				msg = "학생삭제 성공.";
+//				url = "student.do?command=list";
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//				msg = "학생삭제 오류.";
+//				url = "student.do?command=start";
+//			}
+//			req.setAttribute("msg", msg);
+//			req.setAttribute("url", url);
+//			nextPage = "/message.jsp";
+			CommandIf cmdIf = new DeleteCommand();
+			nextPage = (String)cmdIf.processCommand(req,resp);
 		}
 		///////////////////////////////
 		else if (cmd.equals("find")) {
 			//pw.println("<h2>학생찾기페이지에서 왔습니다.</h2>");
-			StudentDAO dao = new StudentDAO();
-			String sear_name = req.getParameter("name");
-			List<StudentDTO> list = null;
-			try {
-				list = dao.findStudent(sear_name);
-				req.setAttribute("studentList", list);
-				msg = "학생찾기 성공.";
-				url = "list.jsp";
-			} catch (SQLException e) {
-				e.printStackTrace();
-				msg = "학생찾기 오류.";
-				url = "student.do?command=start";
-			} 
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-			nextPage = "/message.jsp";
+//			StudentDAO dao = new StudentDAO();
+//			String sear_name = req.getParameter("name");
+//			List<StudentDTO> list = null;
+//			try {
+//				list = dao.findStudent(sear_name);
+//				req.setAttribute("studentList", list);
+//				msg = "학생찾기 성공.";
+//				url = "list.jsp";
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//				msg = "학생찾기 오류.";
+//				url = "student.do?command=start";
+//			} 
+//			req.setAttribute("msg", msg);
+//			req.setAttribute("url", url);
+//			nextPage = "/message.jsp";
+			CommandIf cmdIf = new FindCommand();
+			nextPage = (String)cmdIf.processCommand(req,  resp);
 		}
 		///////////////////////////////
 		else if (cmd.equals("list")) {
 			//pw.println("<h2>학생목록페이지에서 왔습니다.</h2>");
-			StudentDAO dao = new StudentDAO();
-			List<StudentDTO> list = null;
-			try {
-				list = dao.listStudent();
-				req.setAttribute("studentList", list);
-				msg = "학생목록 성공.";
-				url = "list.jsp";
-			} catch (SQLException e) {
-				e.printStackTrace();
-				msg = "학생목록 오류.";
-				url = "student.do?command=start";
-			} 
-			req.setAttribute("msg", msg);
-			req.setAttribute("url", url);
-			nextPage = "/message.jsp";
+//			StudentDAO dao = new StudentDAO();
+//			List<StudentDTO> list = null;
+//			try {
+//				list = dao.listStudent();
+//				req.setAttribute("studentList", list);
+//				msg = "학생목록 성공.";
+//				url = "list.jsp";
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//				msg = "학생목록 오류.";
+//				url = "student.do?command=start";
+//			} 
+//			req.setAttribute("msg", msg);
+//			req.setAttribute("url", url);
+//			nextPage = "/message.jsp";
+			CommandIf cmdIf = new ListCommand();
+			nextPage = (String)cmdIf.processCommand(req,  resp);
 		} 
 		/////////////////////////////////
 		else if (cmd.equals("start")) {
-			nextPage = "/student.jsp";
+//			nextPage = "/student.jsp";
+			CommandIf cmdIf = new StartCommand();
+			nextPage = (String)cmdIf.processCommand(req,  resp);
 		}
+************************************/
 
 		// 작업 수행 후 화면 바꾸기
 		RequestDispatcher view = req.getRequestDispatcher(nextPage);

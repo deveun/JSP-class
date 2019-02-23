@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+
+<!-- 모든 것을 서블릿으로 보내주기 -->
+<servlet>
+	<servlet-name>front</servlet-name>
+	<servlet-class>FrontAppServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>front</servlet-name>
+	<url-pattern>*.app</url-pattern>
+</servlet-mapping>
+<servlet>
+	<servlet-name>member</servlet-name>
+	<servlet-class>member.MemberServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>member</servlet-name>
+	<url-pattern>*.mem</url-pattern>
+</servlet-mapping>
+</web-app>
