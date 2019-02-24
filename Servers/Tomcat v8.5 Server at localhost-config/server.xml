@@ -168,7 +168,7 @@
       <Context docBase="MVCTest4_1" path="/MVCTest4_1" reloadable="true" source="org.eclipse.jst.jee.server:MVCTest4_1">
       	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxAction="20" maxIdle="10" maxWait="-1" name="jdbc/oracle" password="jsp01" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="jsp01"/>
       </Context>
-      </Host>
+      <Context docBase="jstl" path="/jstl" reloadable="true" source="org.eclipse.jst.jee.server:jstl"/></Host>
     </Engine>
   </Service>
 </Server>

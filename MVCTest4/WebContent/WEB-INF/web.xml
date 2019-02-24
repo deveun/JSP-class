@@ -10,6 +10,7 @@
 	<servlet-name>front</servlet-name>
 	<url-pattern>*.app</url-pattern>
 </servlet-mapping>
+
 <servlet>
 	<servlet-name>member</servlet-name>
 	<servlet-class>member.MemberServlet</servlet-class>
@@ -17,5 +18,14 @@
 <servlet-mapping>
 	<servlet-name>member</servlet-name>
 	<url-pattern>*.mem</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>board</servlet-name>
+	<servlet-class>board.BoardServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>board</servlet-name>
+	<url-pattern>*.board</url-pattern>
 </servlet-mapping>
 </web-app>
