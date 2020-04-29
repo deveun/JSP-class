@@ -1,0 +1,53 @@
+header, section, footer, article {
+	background-color: white;
+	padding: 10px;
+	margin: 10px;
+}
+
+button, .link_span {
+	cursor: pointer;
+}
+
+.title_span {
+	font-size: 25px;
+	font-weight: 900;
+}
+
+.nav_btn {
+	margin: 10px;
+	width: 90px;
+	height: 50px;
+	border: none;
+	background-color: #008CBA;
+	color: white;
+	box-shadow: 5px 5px gray;
+}
+
+.main_btn {
+	margin: 10px;
+	width: 110px;
+	height: 80px;
+	border: none;
+	background-color: #8080C0;
+	color: white;
+	box-shadow: 5px 5px gray;
+}
+
+.img_article {
+	display: inline-flex;
+	flex-direction: row;
+	margin: 5%;
+}
+
+.img_article img {
+	outline-color: gray;
+	outline-style: solid;
+	outline-width: 7px;
+	margin: 20px;
+	
+}
+
+.img_article div {
+	margin: 30px;
+	line-height: 35px;
+}
